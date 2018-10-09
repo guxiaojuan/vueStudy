@@ -1,0 +1,67 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>history路由的实现</title>
+</head>
+
+<body>
+<div id="app">
+    <ul>
+        <li><a data-href="/" href="#">home</a></li>
+        <li><a data-href="/about" href="#">about</a></li>
+        <li><a data-href="/topics" href="#">topics</a></li>
+    </ul>
+    <div id="content"></div>
+</div>
+
+<script>
+	class Router {
+		constructor() {
+			this.routers = [];
+			this.currentUrl = '';
+		}
+		route (path, callback) {
+			this.routers[path] = callback || function() {};
+		}
+		updateView (url) {
+			this.currentUrl = url;
+			this.routers[this.currentUrl] && this.routers[this.currentUrl]();
+		}
+		bindLink () {
+			const allLink = Array.from(document.querySelectorAll('a[data-href]'));
+			for (let i=0; i< allLink.length; i++) {
+				const current = allLink[i];
+				current.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const url = current.getAttribute('data-href');
+                    history.pushState({}, null, url);
+                    this.updateView(url);
+                    
+				}, false);
+            }
+        }
+        init () {
+			this.bindLink();
+			window.addEventListener('popstate', (e) => {
+				this.updateView(location.pathname);
+            });
+			window.addEventListener('load', function() {
+				this.updateView('/');
+            }, false);
+        }
+	}
+
+	const router = new Router();
+	router.init();
+	router.route('/', function() {
+		document.getElementById('content').innerHTML = 'Home';
+	});
+	router.route('/about', function() {
+		document.getElementById('content').innerHTML = 'About';
+	});
+	router.route('/topics', function() {
+		document.getElementById('content').innerHTML = 'Topics';
+	});
+</script>
+</body>
+</html>
