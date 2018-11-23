@@ -2,7 +2,7 @@ function nodeToFragment(node, vm) {   //vm: {"data":{"text":"hello,vue"}}
 	var flag = document.createDocumentFragment();
 	var child;
 	while(child = node.firstChild) {   //将子节点劫持到文档片段
-		compile(child, vm)
+		compile(child, vm);
 		if(child.firstChild) {  //具有子节点
 			var dom = nodeToFragment(child);
 			child.appendChild(dom);
@@ -23,7 +23,7 @@ function compile(node, vm) {
 		for(var i=0; i<attrs.length; i++) {
 			// console.log(attrs[i].nodeName)
 			if(attrs[i].nodeName === 'v-model') {    //view -> model
-				var name=  attrs[i].nodeValue;
+				var name=  attrs[i].nodeValue;     //nodeValue返回文本节点或者属性节点的值，元素节点没有值
 
 				node.addEventListener('input', function(e) {
 					vm[name] = e.target.value;
@@ -36,7 +36,7 @@ function compile(node, vm) {
 		}
 	}
 
-	if (node.nodeType === 3) {   //文本节点
+	if (node.nodeType === 3) {   //文本节点，匹配{{}}
 		if(reg.test(node.nodeValue)) {
 			var name = RegExp.$1;
 			name = name.trim();
@@ -52,7 +52,7 @@ function defineReactive(obj, key, val) {
 	var dep = new Dep();
 	console.log(dep)
 
-	Object.defineProperty(obj, key, {
+	Object.defineProperty(obj, key, {     //为每个属性添加get和set方法
 		get: function () {
 			if (Dep.target) {  //添加订阅者watcher到主体对象Dep
 				dep.addSub(Dep.target);
