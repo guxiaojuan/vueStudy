@@ -31,7 +31,7 @@ export function createMatcher (
     const location = normalizeLocation(raw, currentRoute, false, router)
     const { name } = location
 
-    if (name) {
+    if (name) {   //命名路由
       const record = nameMap[name]
       if (process.env.NODE_ENV !== 'production') {
         warn(record, `Route with name '${name}' does not exist`)

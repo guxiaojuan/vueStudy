@@ -1,5 +1,6 @@
 /* @flow */
 
+//path-to-regexp把路径转化为正则表达式
 import Regexp from 'path-to-regexp'
 import { cleanPath } from './util/path'
 import { assert, warn } from './util/warn'
@@ -76,7 +77,7 @@ function addRouteRecord (
     route.pathToRegexpOptions || {}
   const normalizedPath = normalizePath(path, parent, pathToRegexpOptions.strict)
 
-  if (typeof route.caseSensitive === 'boolean') {
+  if (typeof route.caseSensitive === 'boolean') {   //是否大小写敏感
     pathToRegexpOptions.sensitive = route.caseSensitive
   }
 

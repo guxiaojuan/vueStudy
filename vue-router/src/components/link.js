@@ -23,9 +23,9 @@ export default {
       default: 'a'
     },
     exact: Boolean,
-    append: Boolean,
+    append: Boolean,  //在当前路径前附加路径
     replace: Boolean,
-    activeClass: String,
+    activeClass: String,   //链接激活时使用的css类名
     exactActiveClass: String,
     event: {
       type: eventTypes,

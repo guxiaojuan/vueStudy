@@ -14,7 +14,7 @@ export class HashHistory extends History {
     if (fallback && checkFallback(this.base)) {
       return
     }
-    ensureSlash()
+    ensureSlash()   //保证hash是以/开头
   }
 
   // this is delayed until the app mounts

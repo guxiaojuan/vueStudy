@@ -33,8 +33,8 @@ export default class VueRouter {
   afterHooks: Array<?AfterNavigationHook>;
 
   constructor (options: RouterOptions = {}) {
-    this.app = null
-    this.apps = []
+    this.app = null    //根Vue实例
+    this.apps = []     //保存持有$options.router属性的Vue实例
     this.options = options
     this.beforeHooks = []
     this.resolveHooks = []
@@ -233,6 +233,7 @@ export default class VueRouter {
     }
   }
 
+  //START {name: undefined, meta:{}, path: '/', hash: '', query: undefined, params: {}, fullPath:/, matched: []}
   addRoutes (routes: Array<RouteConfig>) {
     this.matcher.addRoutes(routes)
     if (this.history.current !== START) {

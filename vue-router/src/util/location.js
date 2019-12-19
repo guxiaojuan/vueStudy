@@ -17,7 +17,7 @@ export function normalizeLocation (
   // named target
   if (next._normalized) {
     return next
-  } else if (next.name) {
+  } else if (next.name) {   //命名路由返回备份
     next = extend({}, raw)
     const params = next.params
     if (params && typeof params === 'object') {
@@ -43,7 +43,7 @@ export function normalizeLocation (
     return next
   }
 
-  const parsedPath = parsePath(next.path || '')
+  const parsedPath = parsePath(next.path || '')  // 将path拆分成path,hash和query
   const basePath = (current && current.path) || '/'
   const path = parsedPath.path
     ? resolvePath(parsedPath.path, basePath, append || next.append)

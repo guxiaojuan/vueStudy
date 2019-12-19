@@ -25,7 +25,7 @@ export class History {
   errorCbs: Array<Function>
 
   // implemented by sub-classes
-  +go: (n: number) => void
+  +go: (n: number) => void   // +抽象函数，需要子类去实现
   +push: (loc: RawLocation) => void
   +replace: (loc: RawLocation) => void
   +ensureURL: (push?: boolean) => void

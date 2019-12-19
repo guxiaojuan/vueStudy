@@ -3,7 +3,7 @@
 export function resolvePath (
   relative: string,
   base: string,
-  append?: boolean
+  append?: boolean   //用于判断是否在当前相对路径前添加基路径
 ): string {
   const firstChar = relative.charAt(0)
   if (firstChar === '/') {
