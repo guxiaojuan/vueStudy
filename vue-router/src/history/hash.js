@@ -47,6 +47,14 @@ export class HashHistory extends History {
     )
   }
 
+  /*
+  *  路由的跳转方式：
+  *  1. 字符串：  router.push('home')
+  *  2. 对象：    router.push({path: 'home'})
+  *  3. 命名路由：router.push({name: 'user', params: {userId:'122'} })
+  *  4. 查询参数：router.push({path:'home', query:'id: 1'})
+  * */
+
   push (location: RawLocation, onComplete?: Function, onAbort?: Function) {
     const { current: fromRoute } = this
     this.transitionTo(
@@ -90,7 +98,7 @@ export class HashHistory extends History {
 }
 
 function checkFallback (base) {
-  const location = getLocation(base)
+  const location = getLocation(base)   //去掉base后的真正的location值
   if (!/^\/#/.test(location)) {
     window.location.replace(cleanPath(base + '/#' + location))
     return true

@@ -105,7 +105,7 @@ function isValidPosition (obj: Object): boolean {
 
 function normalizePosition (obj: Object): Object {
   return {
-    x: isNumber(obj.x) ? obj.x : window.pageXOffset,
+    x: isNumber(obj.x) ? obj.x : window.pageXOffset,   //pageXOffset返回文档在窗口左上角水平方向滚动的像素，相当于scrollX
     y: isNumber(obj.y) ? obj.y : window.pageYOffset
   }
 }

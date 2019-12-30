@@ -49,6 +49,7 @@ function clone (value) {
 }
 
 // the starting route that represents the initial state
+// START = {name: undefined, meta: {}, path: '/', hash: '', query: {}, params: {}, fullPath: '/', matched: []}
 export const START = createRoute(null, {
   path: '/'
 })
